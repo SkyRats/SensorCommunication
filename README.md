@@ -11,6 +11,11 @@ pip install adafruit-circuitpython-us100
 ```
 #### Instalando o módulo SCD30 da Sensirion:
 
+Clone o repositório python-i2c-scd30
+```
+git clone https://github.com/Sensirion/python-i2c-scd30
+```
+
 Dentro da pasta python-i2c-scd30:
 
 ```
