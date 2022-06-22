@@ -47,4 +47,23 @@ GPIO#| GPIO Pin Name| Sensor Pin | Description     | Comments |
    16 | RxD(UART0) | Rx   |    |     |
    15 | TxD(UART1) | Tx   |   |     |
 
-     
+### Possíveis problemas:
+
+##### Código do SCD30 não detectando firmware ou dando erro:
+
+Instale e utilize o I2C-tools para detectar se a Odroid está detectando o sensor:
+
+```
+sudo apt update
+sudo apt install i2c-tools
+i2cdetect -y 0
+```
+Caso o sensor esteja conectado corretamente, ele deve ocupar o endereço 0x61
+
+##### US100 não está sendo detectado:
+
+Tente inverter a conexão do pino Rx e Tx
+
+##### Erro com a porta serial do US100:
+
+Tente mudar a porta serial utilizada no código dos sensores, instruções detalhadas estão nos comentários do próprio código
