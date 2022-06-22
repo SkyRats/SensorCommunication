@@ -33,6 +33,7 @@ class SCD30:
         
 class US100:
     def medicaoUS100(self):
+        # Caso ocorra algum erro, troque a porta que o USB está conectado ou troque a porta especificada na variável UART
         uart = serial.Serial("/dev/ttySAC0", baudrate=9600, timeout=1)
         # uart = serial.Serial("/dev/ttyS0", baudrate=9600, timeout=1)
         # uart = serial.Serial("/dev/ttyAML0", baudrate=9600, timeout=1)
