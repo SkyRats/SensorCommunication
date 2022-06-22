@@ -33,4 +33,18 @@ GPIO#| GPIO Pin Name| Sensor Pin | Description     | Comments |
 ----- | ------------- | ----------- | -----------   | -------- |
   ⠀  |  5V VDC          | VDD         |   Supply Voltage          | 3.3 to 5V        |
   ⠀  |  GND       | GND         |    Ground         |        | 
-   9 | SCL(I2C_1) | SCL   |           I2C: Serial clock input   |     |
+   9 | SCL(I2C_1) | SCL   | I2C: Serial clock input   |     |
+   8 | SDA(I2C_2) | SDA   | I2C: Serial data input / output   |     |
+   
+   ###### Obs: deixe os outros pinos em modo floating
+   
+#### Conexão do US100:
+
+GPIO#| GPIO Pin Name| Sensor Pin | Description     | Comments |
+----- | ------------- | ----------- | -----------   | -------- |
+  ⠀  |  5V VDC          | VDD         |   Supply Voltage          | 5V        |
+  ⠀  |  GND       | GND         |    Ground         |        | 
+   16 | RxD(UART0) | Rx   |    |     |
+   15 | TxD(UART1) | Tx   |   |     |
+
+     
