@@ -21,4 +21,5 @@ Dentro da pasta python-i2c-scd30:
 ```
 python3 setup.py install
 ```
+Conecte os sensores da seguinte forma (para a Odroid):
 
