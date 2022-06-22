@@ -23,3 +23,14 @@ python3 setup.py install
 ```
 Conecte os sensores da seguinte forma (para a Odroid):
 
+<p align="center">
+  <img src="https://pi4j.com/1.2/images/odroid-xu4-con10-pinout.png" />
+</p>
+
+#### Conexão do SCD30:
+
+GPIO#| GPIO Pin Name| Sensor Pin | Description     | Comments |
+----- | ------------- | ----------- | -----------   | -------- |
+  ⠀  |  5V VDC          | VDD         |   Supply Voltage          | 3.3 to 5V        |
+  ⠀  |  GND       | GND         |    Ground         |        | 
+   9 | SCL(I2C_1) | SCL   |           I2C: Serial clock input   |     |
