@@ -1,4 +1,5 @@
 import time
+from turtle import distance
 import sensirion_i2c_scd30
 import serial
 import adafruit_us100
@@ -6,8 +7,8 @@ from sensirion_i2c_driver import LinuxI2cTransceiver, I2cConnection, CrcCalculat
 from sensirion_i2c_adapter.i2c_channel import I2cChannel
 from sensirion_i2c_scd30.device import Scd30Device
 class SCD30:
-    def medicaoSCD30(self): #Faz a medição do SCD30
-        with LinuxI2cTransceiver('/dev/i2c-1') as i2c_transceiver: #Talvez seja necessário mudar o bus do i2c, para ver qual é o correto utilize o i2c tools como exemplificado no Readme
+    def medicaoSCD30(self):
+        with LinuxI2cTransceiver('/dev/i2c-0') as i2c_transceiver:
             channel = I2cChannel(I2cConnection(i2c_transceiver),
                                 slave_address=0x61,
                                 crc=CrcCalculator(8, 0x31, 0xff, 0x0))
@@ -20,7 +21,7 @@ class SCD30:
                 ...
 
             (major, minor) = sensor.read_firmware_version()
-            print(f"firmware version major: {major}; minor: {minor};") #Mostra a versão do firmware
+            print(f"firmware version major: {major}; minor: {minor};")
             sensor.start_periodic_measurement(0)
             for i in range(30):
                 try:
@@ -30,10 +31,10 @@ class SCD30:
                 except BaseException:
                     continue
             sensor.soft_reset()
+            return (co2_concentration, temperature, humidity)
         
 class US100:
-    def medicaoUS100(self): #Essa função faz a medição do US100
-        # Caso ocorra algum erro, troque a porta que o USB está conectado ou troque a porta especificada na variável UART
+    def medicaoUS100(self):
         uart = serial.Serial("/dev/ttySAC0", baudrate=9600, timeout=1)
         # uart = serial.Serial("/dev/ttyS0", baudrate=9600, timeout=1)
         # uart = serial.Serial("/dev/ttyAML0", baudrate=9600, timeout=1)
@@ -42,9 +43,26 @@ class US100:
             print("-----")
             print("Temperature: ", us100.temperature)
             time.sleep(0.5)
+            distmedida = us100.distance
             print("Distance: ", us100.distance)
             time.sleep(0.5)
-        
-a = SCD30()
-x = a.medicaoSCD30()
-print = x 
+        return (distmedida)
+class CSVconverter:
+    def __init__(self, CO2, Temperatura, Umidade, Distancia):
+        import csv  
+        import time
+
+        header = ['CO2', 'Temperatura', 'Umidade', 'Distância']
+        data = [CO2,Temperatura,Umidade,Distancia]
+        with open('path to file', 'w', encoding='UTF8') as f:
+            writer = csv.writer(f)
+
+        # write the header
+        writer.writerow(header)
+
+        # write the data
+        writer.writerow(data)
+        return("1")
+(a,b,c) = SCD30().medicaoSCD30()
+d = US100().medicaoUS100()
+z = CSVconverter().__init__(self,a,b,c,d)
