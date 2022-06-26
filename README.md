@@ -68,6 +68,8 @@ Tente inverter a conexão do pino Rx e Tx
 
 Tente mudar a porta serial utilizada no código dos sensores, instruções detalhadas estão nos comentários do próprio código
 
+## É necessário colocar no código o caminho para o arquivo de texto que erá usado para arquivar os dados em CSV
+
 ### OBS:
 
 Esse código foi testado individualmente porém o código do repositório ainda não foi testado na odroid XU4, porém isso deve ser feito em breve
