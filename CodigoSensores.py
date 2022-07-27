@@ -6,6 +6,7 @@ import adafruit_us100
 from sensirion_i2c_driver import LinuxI2cTransceiver, I2cConnection, CrcCalculator
 from sensirion_i2c_adapter.i2c_channel import I2cChannel
 from sensirion_i2c_scd30.device import Scd30Device
+st = time.time()
 class SCD30:
     def medicaoSCD30(self):
         with LinuxI2cTransceiver('/dev/i2c-0') as i2c_transceiver:
@@ -51,18 +52,21 @@ class CSVconverter:
     def __init__(self, CO2, Temperatura, Umidade, Distancia):
         import csv  
         import time
-
-        header = ['CO2', 'Temperatura', 'Umidade', 'Distância']
-        data = [CO2,Temperatura,Umidade,Distancia]
-        with open('path to file', 'w', encoding='UTF8') as f:
+        et = time.time()
+        Tempo = et - st
+        header = ['CO2', 'Temperatura', 'Umidade', 'Distância', 'Tempo']
+        data = [CO2,Temperatura,Umidade,Distancia,Tempo]
+        with open('path to file', 'w', encoding='UTF8') as f: #Coloque o path para um arquivo de texto para salvar os dados
             writer = csv.writer(f)
-
-        # write the header
         writer.writerow(header)
-
-        # write the data
         writer.writerow(data)
         return("1")
-(a,b,c) = SCD30().medicaoSCD30()
-d = US100().medicaoUS100()
-z = CSVconverter().__init__(self,a,b,c,d)
+class Main:
+    def Main():
+        (a,b,c) = SCD30().medicaoSCD30()
+        d = US100().medicaoUS100()
+        z = CSVconverter().__init__(self,a,b,c,d)
+while 1==1:
+    Main().Main()
+    time.sleep(1)
+        
