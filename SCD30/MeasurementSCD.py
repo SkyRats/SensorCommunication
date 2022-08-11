@@ -1,5 +1,4 @@
 import time
-from turtle import distance
 import sensirion_i2c_scd30
 import serial
 import adafruit_us100
